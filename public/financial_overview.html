@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Financial Overview</title> 
+    <link rel="stylesheet" href="financial_overview.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest"></script> 
+</head> 
+<body> 
+    <h1>Financial Overview!</h1>
+    <div class="section"> 
+        <h2>Budgeting Options</h2> 
+        <canvas id="budgetPie" class="display-flex" width="400" height="350"></canvas> 
+    </div>
+    <div class="section">
+        <h2>Visual Summary</h2>
+        <canvas id="financial_overview_pie" class="display-flex" width="250" height="200"></canvas>  
+        <button id = "populate-pie-chart" class = "buttonStyle">Enter Expense</button>
+        <script src = "fOverviewButton.js"></script>
+    </div>
+    <div class="section"> 
+        <h2>Spending vs Income</h2> 
+        <canvas id="spendingVsIncome" class="display-flex" width="300" height="260"></canvas> 
+        <button id = "populate-SVI-barchart" class = "buttonPlacement" class="buttonStyle">Enter Income</button> 
+        <script src = "sviBarchartButton.js" "></script>  
+    </div>
+    <script src = "budget_pie.js"></script> 
+    <script src = "pie.js"></script>
+    <script src = "bar.js"></script> 
+
+
+
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+        import { getAuth,signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+    
+        const firebaseConfig = {
+          apiKey: "AIzaSyBGDGQCzl-GV1R2G0HsroPkj9UQXlR9r_g",
+          authDomain: "gcpfirebase-ec1ed.firebaseapp.com",
+          databaseURL: "https://gcpfirebase-ec1ed-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "gcpfirebase-ec1ed",
+          storageBucket: "gcpfirebase-ec1ed.appspot.com",
+          messagingSenderId: "464641029508",
+          appId: "1:464641029508:web:4de67da274ee412fd9d9d1",
+          measurementId: "G-EEJ3GJTWCL"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+    
+        document.getElementById("setExpense").addEventListener("click", (e) => {
+        e.preventDefault();
+          var expense1 = document.getElementById("rent").value;
+          var expense2 = document.getElementById("food").value;
+          var expense3 = document.getElementById("email").value;
+          var expense4 = document.getElementById("password").value;
+          var expense5 = document.getElementById("email").value;
+          var expense6 = document.getElementById("other").value;
+          setData (auth,expense1, expense2, expense3, expense4, expense5, expense6)
+          .then((userCredential) =>{
+            const user = userCredential.user;
+            const dt = new Date();
+            update(ref(database, 'users/' + user.uid), {
+                expense1 : expense1,
+                expense2 : expense2,
+                expense3 : expense3,
+                expense4 : expense4,
+                expense5 : expense5,
+                expense6 : expense6
+            })
+            alert("logged in!");
+          })
+          .catch((error) => {
+            const error_code = error.code;
+            const error_message = error.message;
+            alert(error_message);
+          });
+        });
+        const user = auth.currentUser;
+        onAuthStateChanged (auth, (user) => {
+          if (user) {
+          const uid = user.uid;
+          alert("user logged out");
+        }
+        else {
+  
+        }
+      });
+    </script>
+</body>
+</html> 

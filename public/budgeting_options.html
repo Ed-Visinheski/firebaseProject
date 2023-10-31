@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budgeting Page</title> 
+    <link rel="stylesheet" href="financial_overview.css"> 
+    <link rel="stylesheet" href="budgeting_options.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest"></script> 
+</head> 
+<body> 
+    <h1>Budget Options</h1> 
+    <div class="section budgeting"> 
+        <h2 class="section-title">Budgeting</h2> 
+        <canvas id="budgetPie" width="300" height="350"></canvas> 
+        <script src = "budget_pie.js"></script> 
+        <label for="account-mode">Account Mode:</label>
+        <select id="account-mode">
+            <option value="personal">Personal</option>
+            <option value="business">Business</option>
+            <option value="savings">Savings</option>
+        </select>
+        <button id="add-budget-button">Add Budget</button>
+    </div>
+</body>
+</html> 

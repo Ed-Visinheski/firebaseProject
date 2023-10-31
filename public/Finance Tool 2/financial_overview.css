@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif; 
+    margin: 0;
+    padding: 0; 
+    background-color: #1e1e8d; 
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px; 
+    color: #e1ad01;   
+}
+
+.section {
+    width: 33.33%;
+    float: left;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    height: 500px; 
+    box-sizing: border-box;
+    margin-top: 20px; 
+}
+
+.section h2 { 
+    color: #e1ad01; 
+} 
+
+#populate-pie-chart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+} 
+
+.footer {
+    clear: both;
+    text-align: center;
+    padding: 20px;
+    background-color: #e1ad01;   
+}
+
+.footer p {
+    color: #777;
+    font-size: 14px;
+} 

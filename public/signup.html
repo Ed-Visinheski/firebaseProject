@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/global.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <form>
+    <label for="email">Username:</label>
+    <input type="username" id="username" name="username" placeholder="Enter your username">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password">
+    <button type="submit" id="signUp" name="signUp_submit">Sign Up</button>
+  </form>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBGDGQCzl-GV1R2G0HsroPkj9UQXlR9r_g",
+      authDomain: "gcpfirebase-ec1ed.firebaseapp.com",
+      databaseURL: "https://gcpfirebase-ec1ed-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "gcpfirebase-ec1ed",
+      storageBucket: "gcpfirebase-ec1ed.appspot.com",
+      messagingSenderId: "464641029508",
+      appId: "1:464641029508:web:4de67da274ee412fd9d9d1",
+      measurementId: "G-EEJ3GJTWCL"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+
+    const signUpButton = document.getElementById("signUp");
+    
+    signUpButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      var username = document.getElementById("username").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var expense1 = '';
+      var expense2 = '';
+      var expense3 = '';
+      var expense4 = '';
+      var expense5 = '';
+      var expense6 = '';
+
+      // Validate email and password here
+
+      createUserWithEmailAndPassword(auth, email, password)
+      .then ((userCredential) => {
+        const user = userCredential.user
+        set(ref(database, 'users/' + user.uid), {
+          username: username,
+          email: email,
+          expense1 : expense1,
+          expense2 : expense2,
+          expense3 : expense3,
+          expense4 : expense4,
+          expense5 : expense5,
+          expense6 : expense6
+        })
+        alert("user created!");
+      })
+        .catch((error) => {
+          const error_code = error.code;
+          const error_message = error.message;
+          alert(error_message);
+        });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

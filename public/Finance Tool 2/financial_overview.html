@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Financial Overview</title> 
+    <link rel="stylesheet" href="financial_overview.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest"></script> 
+</head> 
+<body> 
+    <h1>Financial Overview</h1> 
+    <div class="section"> 
+        <h2>Budgeting Options</h2> 
+        <canvas id="budgetPie" width="400" height="350"></canvas> 
+        <script src = "budget_pie.js"></script> 
+    </div>
+    <div class="section">
+        <h2>Visual Summary</h2>
+        <canvas id="financial_overview_pie" width="250" height="200"></canvas> 
+        <script src = "pie.js"></script> 
+        <button id="populate-pie-chart">Populate Pie Chart</button> 
+        <script src = "fOverviewButton.js"></script> 
+    </div>
+    <div class="section"> 
+        <h2>Spending vs Income</h2> 
+        <canvas id="spendingVsIncome" width="300" height="260"></canvas> 
+        <script src = "bar.js"></script> 
+        <button id="populate-SVI-barchart">Populate Bar Chart</button> 
+        <script src = "sviBarchartButton.js"></script> 
+    </div>
+    <div style="padding: 60px;"> 
+        <div id="widget"></div> 
+    </div>
+</body>
+</html> 
